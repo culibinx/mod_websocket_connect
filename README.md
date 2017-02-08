@@ -1,11 +1,14 @@
 This is simple project.
 
 #Compile and install:
+```sh
 sudo apxs -c -i mod_websocket.c
 sudo apxs -c -i mod_websocket_connect.c
+```
 
 #Simple websocket.conf in apache conf dir:
- # Websocket Connect Module #
+```sh
+# example config Websocket Connect Module
 LoadModule websocket_module            modules/mod_websocket.so
 LoadModule websocket_connect_module    modules/mod_websocket_connect.so
 <IfModule mod_websocket.c>
@@ -65,3 +68,4 @@ LoadModule websocket_connect_module    modules/mod_websocket_connect.so
 <IfModule reqtimeout_module>
  RequestReadTimeout body=300,minrate=1
 </IfModule>
+```
