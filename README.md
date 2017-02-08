@@ -1,12 +1,13 @@
 This is simple project.
 
-#Compile and install:
+### Compile and install
 ```sh
 sudo apxs -c -i mod_websocket.c
 sudo apxs -c -i mod_websocket_connect.c
 ```
 
-#Simple websocket.conf in apache conf dir:
+### Simple websocket.conf located in apache conf.d directory
+
 ```sh
 # example config Websocket Connect Module
 LoadModule websocket_module            modules/mod_websocket.so
@@ -69,3 +70,8 @@ LoadModule websocket_connect_module    modules/mod_websocket_connect.so
  RequestReadTimeout body=300,minrate=1
 </IfModule>
 ```
+
+### Feedback/Updates
+
+Feel free to push your additions, changes, variants.
+Let me know.
