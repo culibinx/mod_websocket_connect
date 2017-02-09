@@ -1,4 +1,4 @@
-This is simple project.
+This is simple project based on mod_websocket, written by self.disconnect
 
 ### Compile and install
 ```sh
