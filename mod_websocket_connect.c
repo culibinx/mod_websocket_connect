@@ -244,29 +244,29 @@ static int socket_set_options(apr_socket_t *sock, config_rec *config) {
         return APR_ENOTIMPL;
     }
     
-    if (!config->type && config->tcp_no_delay) {
-        rv = apr_socket_opt_set(sock, APR_TCP_NODELAY, 1);
+    if (!config->type/* && config->tcp_no_delay*/) {
+        rv = apr_socket_opt_set(sock, APR_TCP_NODELAY, config->tcp_no_delay);
         if (rv != APR_SUCCESS && rv != APR_ENOTIMPL) {
             APACHE_LOG(APLOG_ERR, NULL, "apr_socket_opt_set(APR_TCP_NODELAY): Failed to set");
             return rv;
         }
     }
     
-    if (!config->type && config->keep_alive) {
-        rv = apr_socket_opt_set(sock, APR_SO_KEEPALIVE, 1);
+    if (!config->type/* && config->keep_alive*/) {
+        rv = apr_socket_opt_set(sock, APR_SO_KEEPALIVE, config->keep_alive);
         if (rv != APR_SUCCESS && rv != APR_ENOTIMPL) {
             APACHE_LOG(APLOG_ERR, NULL, "apr_socket_opt_set(APR_SO_KEEPALIVE): Failed to set");
             return rv;
         }
     }
     
-    if (config->non_blocking) {
-        rv = apr_socket_opt_set(sock, APR_SO_NONBLOCK, 1);
+    //if (config->non_blocking) {
+        rv = apr_socket_opt_set(sock, APR_SO_NONBLOCK, config->non_blocking);
         if (rv != APR_SUCCESS && rv != APR_ENOTIMPL) {
             APACHE_LOG(APLOG_ERR, NULL, "apr_socket_opt_set(APR_SO_NONBLOCK): Failed to set");
             return rv;
         }
-    }
+    //}
     
     if (config->socket_timeout.tv_sec || config->socket_timeout.tv_usec) {
         rv = apr_socket_timeout_set(sock,misc_timeval_to_int64(&config->socket_timeout));
